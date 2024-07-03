@@ -29,3 +29,5 @@ go.work.sum
 *.ipr
 *.iws
 .idea/
+
+.DS_Store
