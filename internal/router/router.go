@@ -8,7 +8,6 @@ import (
 func Router() *gin.Engine {
 	r := gin.Default() // 初始化gin实例
 	r.Use(middleware.CorsMiddleware())
-	GenSwaggerRouters(r)
 	GenToolRouters(r)
 	return r // 返回指针，供外部调用
 }
