@@ -8,7 +8,7 @@ import (
 func main() {
 	repository.ConnectDB()
 	r := router.Router()
-	err := r.Run(":8080")
+	err := r.Run(":8081")
 	if err != nil {
 		return
 	}

@@ -8,4 +8,4 @@ RUN go build -o main ./cmd/main.go
 FROM alpine:latest
 WORKDIR /root/
 COPY --from=build /app/main .
-CMD ["sh", "-c", "./main"]
+CMD ["./main"]
