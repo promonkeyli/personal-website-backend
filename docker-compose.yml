@@ -1,4 +1,14 @@
 services:
+  app:
+    image: registry.cn-hangzhou.aliyuncs.com/promonkeyli/website-go:latest
+    container_name: website-app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+    networks:
+      - website-net
+
   mysql:
     image: mysql:8.0
     container_name: website-mysql
@@ -12,28 +22,11 @@ services:
     networks:
       - website-net
 
-  app:
-    image: registry.cn-hangzhou.aliyuncs.com/promonkeyli/website-go:latest
-    container_name: website-app
-    ports:
-      - "8081:8081"
-    environment:
-      - GIN_MODE=release
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASSWORD=ly@15984093508
-      - DB_NAME=blog
-    depends_on:
-      - mysql
-    networks:
-      - website-net
-
   nginx:
     image: nginx:latest
     container_name: website-nginx
     ports:
-      - "8080:8080" # 宿主8080 ==> 容器80 port
+      - "8080:8080"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -43,7 +36,6 @@ services:
 
 volumes:
   mysql-data:
-
 networks:
   website-net:
-    driver: bridge
+    external: false  # 表示这是 Docker Compose 内部创建的网络，而不是外部已存在的网络
