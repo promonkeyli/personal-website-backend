@@ -3,15 +3,14 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-ENV GIN_MODE=release
-ENV DB_HOST=website-mysql
-ENV DB_PORT=3306
-ENV DB_USER=root
-ENV DB_PASSWORD=ly@15984093508
-ENV DB_NAME=blog
 RUN go build -o main ./cmd/main.go
-
 FROM alpine:latest
 WORKDIR /root/
 COPY --from=build /app/main .
+ENV GIN_MODE=release \
+    DB_HOST=website-mysql \
+    DB_PORT=3306 \
+    DB_USER=root \
+    DB_PASSWORD=ly15984093508 \
+    DB_NAME=blog
 CMD ["./main"]

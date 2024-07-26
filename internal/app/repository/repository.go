@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"log"
 	"web_backend.com/m/v2/config"
 )
 
@@ -20,6 +21,8 @@ func ConnectDB() {
 	} else {
 		dsn = config.Release_MySql
 	}
+	log.Println("connect database:", dsn)
+
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println("数据库连接失败", err)
