@@ -20,7 +20,6 @@ type AuthController struct {
 //	@Failure	500		{object}	string		"内部错误"
 //	@Router		/login [post]
 func (T AuthController) AuthLoginController(c *gin.Context) {
-	// 前端录入的用户名密码
 	var bodyUser model.User
 	if err := c.BindJSON(&bodyUser); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
