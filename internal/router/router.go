@@ -6,9 +6,20 @@ import (
 )
 
 func Router() *gin.Engine {
-	r := gin.Default() // 初始化gin实例
+	r := gin.Default()
 	r.Use(middleware.CorsMiddleware())
-	GenSwaggerRouters(r)
-	GenToolRouters(r)
-	return r // 返回指针，供外部调用
+	generateAllRouter(r)
+	return r
+}
+
+func generateAllRouter(r *gin.Engine) {
+	// 不需要权限认证的接口：（swagger，login）
+	GenSwaggerRouter(r)
+	GenLoginRouter(r)
+	// 需要权限认证的接口
+	api := r.Group("/api")
+	v1 := api.Group("/v1")
+	v1.Use(middleware.JWT())
+	GenAuthRouter(v1)
+	GenToolRouter(v1)
 }

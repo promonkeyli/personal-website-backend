@@ -7,6 +7,6 @@ import (
 	_ "web_backend.com/m/v2/api/swagger"
 )
 
-func GenSwaggerRouters(r *gin.Engine) {
+func GenSwaggerRouter(r *gin.Engine) {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
