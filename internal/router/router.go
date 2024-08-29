@@ -20,11 +20,17 @@ func Router() *gin.Engine {
 
 func generateAllRouter(r *gin.Engine) {
 	api := r.Group("/api")
-	// 不需要授权
-	GenSwaggerRouter(r)
-	GenLoginRouter(api)
-	// 需要授权
-	api.Use(middleware.JWT())
-	GenAuthRouter(api)
-	GenToolRouter(api)
+
+	// v1 版本
+	{
+		v1 := api.Group("/v1")
+		// 不需要授权
+		GenSwaggerRouter(r)
+		GenLoginRouter(v1)
+		// 需要授权
+		v1.Use(middleware.JWT())
+		GenAuthRouter(v1)
+		GenToolRouter(v1)
+	}
+
 }
