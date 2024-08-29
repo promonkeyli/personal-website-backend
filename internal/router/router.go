@@ -7,19 +7,24 @@ import (
 
 func Router() *gin.Engine {
 	r := gin.Default()
+	// 设置信任的端口
+	r.ForwardedByClientIP = true
+	err := r.SetTrustedProxies([]string{"127.0.0.1"})
+	if err != nil {
+		return nil
+	}
 	r.Use(middleware.CorsMiddleware())
 	generateAllRouter(r)
 	return r
 }
 
 func generateAllRouter(r *gin.Engine) {
-	// 不需要权限认证的接口：（swagger，login）
-	GenSwaggerRouter(r)
-	GenLoginRouter(r)
-	// 需要权限认证的接口
 	api := r.Group("/api")
-	v1 := api.Group("/v1")
-	v1.Use(middleware.JWT())
-	GenAuthRouter(v1)
-	GenToolRouter(v1)
+	// 不需要授权
+	GenSwaggerRouter(r)
+	GenLoginRouter(api)
+	// 需要授权
+	api.Use(middleware.JWT())
+	GenAuthRouter(api)
+	GenToolRouter(api)
 }

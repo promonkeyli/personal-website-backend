@@ -6,9 +6,9 @@ import (
 )
 
 func GenToolRouter(r *gin.RouterGroup) {
-	tool := r.Group("/tool")
+	tool := r.Group("/tools")
 	{
-		tool.GET("/list", controller.ToolController{}.ToolListController)
+		tool.GET("", controller.ToolController{}.ToolListController)
 		tool.POST("/add", controller.ToolController{}.ToolAddController)
 	}
 }
