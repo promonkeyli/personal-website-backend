@@ -3,24 +3,17 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"time"
+	"web_backend.com/m/v2/utils"
 )
 
-type JsonStruct struct {
-	Code      int         `json:"code"`
-	Success   bool        `json:"success"`
-	Message   interface{} `json:"message"`
-	Data      interface{} `json:"data"`
-	TimeStamp time.Time   `json:"timeStamp"`
-}
-
 // HandleOk 成功时调用
-func HandleOk(c *gin.Context, code int, success bool, message interface{}, data interface{}, timeStamp time.Time) {
-	json := &JsonStruct{Code: code, Success: success, Message: message, Data: data, TimeStamp: timeStamp}
-	c.JSON(200, json)
+func HandleOk(c *gin.Context, code utils.StatusCode, message string, data interface{}) {
+	json := &utils.Response{Code: code, Message: message, Data: data, Time: time.Now().UnixMilli()}
+	c.JSON(int(code), json)
 }
 
-// HandleError 失败时调用，失败时Data为{}
-func HandleError(c *gin.Context, code int, success bool, message interface{}, timeStamp time.Time) {
-	json := &JsonStruct{Code: code, Success: success, Message: message, TimeStamp: timeStamp}
-	c.JSON(200, json)
+// HandleError 失败时调用，失败时Data为 nil
+func HandleError(c *gin.Context, code utils.StatusCode, message string) {
+	json := &utils.Response{Code: code, Message: message, Data: nil, Time: time.Now().UnixMilli()}
+	c.JSON(int(code), json)
 }

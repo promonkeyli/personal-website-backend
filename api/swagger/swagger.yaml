@@ -17,13 +17,53 @@ definitions:
       username:
         type: string
     type: object
+  utils.Response:
+    properties:
+      code:
+        allOf:
+        - $ref: '#/definitions/utils.StatusCode'
+        description: 响应码
+      data:
+        description: 响应数据(可以为空)
+      message:
+        description: 响应描述
+        type: string
+      time:
+        description: 响应时间戳
+        type: integer
+    type: object
+  utils.StatusCode:
+    enum:
+    - 200
+    - 400
+    - 401
+    - 403
+    - 404
+    - 500
+    - 501
+    - 502
+    - 503
+    type: integer
+    x-enum-varnames:
+    - StatusOK
+    - StatusBadRequest
+    - StatusUnauthorized
+    - StatusForbidden
+    - StatusNotFound
+    - StatusInternalServerError
+    - StatusNotImplemented
+    - StatusBadGateway
+    - StatusServiceUnavailable
 info:
   contact: {}
 paths:
   /login:
     post:
+      consumes:
+      - application/json
+      description: 使用用户名密码进行登录
       parameters:
-      - description: username password login
+      - description: 用户名密码登录
         in: body
         name: user
         required: true
@@ -33,22 +73,72 @@ paths:
       - application/json
       responses:
         "200":
-          description: 成功
+          description: OK
           schema:
-            $ref: '#/definitions/model.User'
+            $ref: '#/definitions/utils.Response'
         "400":
-          description: 请求错误
+          description: 请求错误！
           schema:
             type: string
         "500":
-          description: 内部错误
+          description: 服务器错误！
           schema:
             type: string
       summary: 用户登录
-  /tool/add:
+      tags:
+      - 用户
+  /logout:
     post:
+      consumes:
+      - application/json
+      description: 用户注销，清除会话、注销令牌
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: 参数错误！
+          schema:
+            type: string
+        "500":
+          description: 服务器错误！
+          schema:
+            type: string
+      summary: 用户注销
+      tags:
+      - 用户
+  /tools:
+    get:
+      consumes:
+      - application/json
+      description: 获取工具
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: 参数错误！
+          schema:
+            type: string
+        "500":
+          description: 服务器错误！
+          schema:
+            type: string
+      summary: 工具列表
+      tags:
+      - 工具
+    post:
+      consumes:
+      - application/json
+      description: 添加工具
       parameters:
-      - description: Tool object to be added
+      - description: 工具新增
         in: body
         name: tool
         required: true
@@ -58,34 +148,70 @@ paths:
       - application/json
       responses:
         "200":
-          description: 成功
+          description: OK
           schema:
-            $ref: '#/definitions/model.Tool'
+            $ref: '#/definitions/utils.Response'
         "400":
-          description: 请求错误
+          description: 参数错误！
           schema:
             type: string
         "500":
-          description: 内部错误
+          description: 服务器错误！
           schema:
             type: string
-      summary: 我的工具项新增
-  /tool/list:
+      summary: 工具新增
+      tags:
+      - 工具
+  /users:
     get:
+      consumes:
+      - application/json
+      description: 获取所有用户
       produces:
       - application/json
       responses:
         "200":
-          description: 请求成功
+          description: OK
           schema:
-            $ref: '#/definitions/model.Tool'
+            $ref: '#/definitions/utils.Response'
         "400":
-          description: 请求错误
+          description: 参数错误！
           schema:
             type: string
         "500":
-          description: 内部错误
+          description: 服务器错误！
           schema:
             type: string
-      summary: 我的工具信息列表获取
+      summary: 用户列表
+      tags:
+      - 用户
+    post:
+      consumes:
+      - application/json
+      description: 新增用户
+      parameters:
+      - description: 用户新增
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: 参数错误！
+          schema:
+            type: string
+        "500":
+          description: 服务器错误！
+          schema:
+            type: string
+      summary: 新增用户
+      tags:
+      - 用户
 swagger: "2.0"

@@ -6,7 +6,7 @@ import (
 )
 
 func GenAuthRouter(r *gin.RouterGroup) {
-	r.POST("/logout", controller.ToolController{}.ToolAddController)
+	r.POST("/logout", controller.AuthController{}.AuthLogOutController)
 }
 
 func GenLoginRouter(r *gin.RouterGroup) {

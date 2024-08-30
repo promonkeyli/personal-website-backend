@@ -30,6 +30,7 @@ func generateAllRouter(r *gin.Engine) {
 		// 需要授权
 		v1.Use(middleware.JWT())
 		GenAuthRouter(v1)
+		GenUserRouter(v1)
 		GenToolRouter(v1)
 	}
 

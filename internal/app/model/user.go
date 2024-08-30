@@ -18,7 +18,14 @@ func (User) TableName() string {
 	return "user"
 }
 
-func QueryUser(username string) (*gorm.DB, User) {
+// QuerySingleUser 单个用户查找
+func QuerySingleUser(username string) (*gorm.DB, User) {
 	var user User
 	return repository.DB.Where("username = ?", username).First(&user), user
+}
+
+// QueryAllUser 查找所有用户
+func QueryAllUserList() (*gorm.DB, []User) {
+	var user []User
+	return repository.DB.Find(&user), user
 }

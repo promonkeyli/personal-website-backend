@@ -17,13 +17,20 @@ const docTemplate = `{
     "paths": {
         "/login": {
             "post": {
+                "description": "使用用户名密码进行登录",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "用户"
                 ],
                 "summary": "用户登录",
                 "parameters": [
                     {
-                        "description": "username password login",
+                        "description": "用户名密码登录",
                         "name": "user",
                         "in": "body",
                         "required": true,
@@ -34,19 +41,19 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "成功",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/utils.Response"
                         }
                     },
                     "400": {
-                        "description": "请求错误",
+                        "description": "请求错误！",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "500": {
-                        "description": "内部错误",
+                        "description": "服务器错误！",
                         "schema": {
                             "type": "string"
                         }
@@ -54,15 +61,90 @@ const docTemplate = `{
                 }
             }
         },
-        "/tool/add": {
+        "/logout": {
             "post": {
+                "description": "用户注销，清除会话、注销令牌",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "我的工具项新增",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户注销",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "参数错误！",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器错误！",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/tools": {
+            "get": {
+                "description": "获取工具",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "工具"
+                ],
+                "summary": "工具列表",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "参数错误！",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器错误！",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "添加工具",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "工具"
+                ],
+                "summary": "工具新增",
                 "parameters": [
                     {
-                        "description": "Tool object to be added",
+                        "description": "工具新增",
                         "name": "tool",
                         "in": "body",
                         "required": true,
@@ -73,19 +155,19 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "成功",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.Tool"
+                            "$ref": "#/definitions/utils.Response"
                         }
                     },
                     "400": {
-                        "description": "请求错误",
+                        "description": "参数错误！",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "500": {
-                        "description": "内部错误",
+                        "description": "服务器错误！",
                         "schema": {
                             "type": "string"
                         }
@@ -93,27 +175,78 @@ const docTemplate = `{
                 }
             }
         },
-        "/tool/list": {
+        "/users": {
             "get": {
+                "description": "获取所有用户",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "我的工具信息列表获取",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户列表",
                 "responses": {
                     "200": {
-                        "description": "请求成功",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.Tool"
+                            "$ref": "#/definitions/utils.Response"
                         }
                     },
                     "400": {
-                        "description": "请求错误",
+                        "description": "参数错误！",
                         "schema": {
                             "type": "string"
                         }
                     },
                     "500": {
-                        "description": "内部错误",
+                        "description": "服务器错误！",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "新增用户",
+                "parameters": [
+                    {
+                        "description": "用户新增",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "参数错误！",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "服务器错误！",
                         "schema": {
                             "type": "string"
                         }
@@ -149,6 +282,55 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
+        },
+        "utils.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "响应码",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/utils.StatusCode"
+                        }
+                    ]
+                },
+                "data": {
+                    "description": "响应数据(可以为空)"
+                },
+                "message": {
+                    "description": "响应描述",
+                    "type": "string"
+                },
+                "time": {
+                    "description": "响应时间戳",
+                    "type": "integer"
+                }
+            }
+        },
+        "utils.StatusCode": {
+            "type": "integer",
+            "enum": [
+                200,
+                400,
+                401,
+                403,
+                404,
+                500,
+                501,
+                502,
+                503
+            ],
+            "x-enum-varnames": [
+                "StatusOK",
+                "StatusBadRequest",
+                "StatusUnauthorized",
+                "StatusForbidden",
+                "StatusNotFound",
+                "StatusInternalServerError",
+                "StatusNotImplemented",
+                "StatusBadGateway",
+                "StatusServiceUnavailable"
+            ]
         }
     }
 }`
