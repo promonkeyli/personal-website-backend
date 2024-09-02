@@ -6,6 +6,7 @@ import (
 )
 
 func Router() *gin.Engine {
+	// gin.default 默认包含了日志记录功能
 	r := gin.Default()
 	// 设置信任的端口
 	r.ForwardedByClientIP = true
@@ -13,7 +14,9 @@ func Router() *gin.Engine {
 	if err != nil {
 		return nil
 	}
+	// 启用允许跨域中间件
 	r.Use(middleware.CorsMiddleware())
+	// 路由生成
 	generateAllRouter(r)
 	return r
 }
@@ -27,7 +30,7 @@ func generateAllRouter(r *gin.Engine) {
 		// 不需要授权
 		GenSwaggerRouter(r)
 		GenLoginRouter(v1)
-		// 需要授权
+		// 需要授权，使用自定义JWT中间件
 		v1.Use(middleware.JWT())
 		GenAuthRouter(v1)
 		GenUserRouter(v1)
