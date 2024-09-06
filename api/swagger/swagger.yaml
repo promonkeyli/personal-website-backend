@@ -1,3 +1,4 @@
+basePath: /api/v1
 definitions:
   model.Tool:
     description: Tool represents a tool entity
@@ -54,8 +55,12 @@ definitions:
     - StatusNotImplemented
     - StatusBadGateway
     - StatusServiceUnavailable
+host: https:promonkeyli.top:8080
 info:
   contact: {}
+  description: My Backend API By Golang
+  title: My Backend API
+  version: "1.0"
 paths:
   /login:
     post:
@@ -214,4 +219,6 @@ paths:
       summary: 新增用户
       tags:
       - 用户
+schemes:
+- http
 swagger: "2.0"

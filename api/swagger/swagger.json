@@ -1,8 +1,16 @@
 {
+    "schemes": [
+        "http"
+    ],
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "My Backend API By Golang",
+        "title": "My Backend API",
+        "contact": {},
+        "version": "1.0"
     },
+    "host": "https:promonkeyli.top:8080",
+    "basePath": "/api/v1",
     "paths": {
         "/login": {
             "post": {

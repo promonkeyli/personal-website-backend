@@ -14,7 +14,7 @@ func main() {
 	}
 
 	// 执行 swag init 命令
-	dir := "./cmd,./internal/app/controller,./internal/app/model,./utils" // 需要注释转换swagger的文件
+	dir := "./cmd,./cmd,./internal/app/controller,./internal/app/model,./utils" // 需要注释转换swagger的文件
 	if err := runCommand("swag", "init", "--dir", dir, "-o", "./api/swagger"); err != nil {
 		fmt.Printf(config.CommandRed+"Error running swag init: %v\n", err)
 		return
