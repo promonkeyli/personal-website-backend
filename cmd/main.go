@@ -16,14 +16,12 @@ func init() {
 	repository.ConnectDB()
 }
 
-//	@title			My Backend API
-//	@version		1.0
-//	@description	My Backend API By Golang
-
-//	@host		https:promonkeyli.top:8080
-//	@BasePath	/api/v1
-//	@schemes	http
-//	@openapi:	3.0.0
+//	@title			个人网站后台接口文档
+//	@version		0.0.1
+//	@description	使用Golang编写的个人网站后台接口
+//	@host			https:promonkeyli.top:8080
+//	@BasePath		/api/v1
+//	@schemes		https
 func main() {
 	r := router.Router()
 	gin.DefaultWriter = os.Stdout

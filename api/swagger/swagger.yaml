@@ -58,9 +58,9 @@ definitions:
 host: https:promonkeyli.top:8080
 info:
   contact: {}
-  description: My Backend API By Golang
-  title: My Backend API
-  version: "1.0"
+  description: 使用Golang编写的个人网站后台接口
+  title: 个人网站后台接口文档
+  version: 0.0.1
 paths:
   /login:
     post:
@@ -91,7 +91,7 @@ paths:
             type: string
       summary: 用户登录
       tags:
-      - 用户
+      - user
   /logout:
     post:
       consumes:
@@ -114,7 +114,7 @@ paths:
             type: string
       summary: 用户注销
       tags:
-      - 用户
+      - user
   /tools:
     get:
       consumes:
@@ -137,7 +137,7 @@ paths:
             type: string
       summary: 工具列表
       tags:
-      - 工具
+      - tool
     post:
       consumes:
       - application/json
@@ -166,7 +166,7 @@ paths:
             type: string
       summary: 工具新增
       tags:
-      - 工具
+      - tool
   /users:
     get:
       consumes:
@@ -189,7 +189,7 @@ paths:
             type: string
       summary: 用户列表
       tags:
-      - 用户
+      - user
     post:
       consumes:
       - application/json
@@ -218,7 +218,7 @@ paths:
             type: string
       summary: 新增用户
       tags:
-      - 用户
+      - user
 schemes:
-- http
+- https
 swagger: "2.0"

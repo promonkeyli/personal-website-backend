@@ -11,9 +11,10 @@ import (
 type AuthController struct {
 }
 
+// AuthLoginController
 // @Summary		用户登录
 // @Description	使用用户名密码进行登录
-// @Tags			用户
+// @Tags			user
 // @Accept			json
 // @Produce		json
 // @Param			user	body		model.User	true	"用户名密码登录"
@@ -50,9 +51,10 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 
 }
 
+// AuthLogOutController
 // @Summary		用户注销
 // @Description	用户注销，清除会话、注销令牌
-// @Tags			用户
+// @Tags			user
 // @Accept			json
 // @Produce		json
 // @Success		200	{object}	utils.Response
