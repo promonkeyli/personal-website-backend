@@ -63,6 +63,11 @@ const docTemplate = `{
         },
         "/logout": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "用户注销，清除会话、注销令牌",
                 "consumes": [
                     "application/json"
@@ -98,6 +103,11 @@ const docTemplate = `{
         },
         "/tools": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "获取工具",
                 "consumes": [
                     "application/json"
@@ -131,6 +141,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "添加工具",
                 "consumes": [
                     "application/json"
@@ -177,6 +192,11 @@ const docTemplate = `{
         },
         "/users": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "获取所有用户",
                 "consumes": [
                     "application/json"
@@ -210,6 +230,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "新增用户",
                 "consumes": [
                     "application/json"
@@ -332,15 +357,32 @@ const docTemplate = `{
                 "StatusServiceUnavailable"
             ]
         }
-    }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth  API的认证方式": {
+            "type": "apiKey",
+            "name": "Authorization  后端获取认证值得方式",
+            "in": "header 发送认证的方式"
+        }
+    },
+    "tags": [
+        {
+            "description": "用户相关的操作",
+            "name": "user"
+        },
+        {
+            "description": "工具相关的操作",
+            "name": "tool"
+        }
+    ]
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "0.0.1",
-	Host:             "https:promonkeyli.top:8080",
-	BasePath:         "/api/v1",
-	Schemes:          []string{"https"},
+	Host:             "",
+	BasePath:         "",
+	Schemes:          []string{},
 	Title:            "个人网站后台接口文档",
 	Description:      "使用Golang编写的个人网站后台接口",
 	InfoInstanceName: "swagger",

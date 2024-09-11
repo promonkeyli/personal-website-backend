@@ -9,7 +9,7 @@ import (
 type ToolController struct {
 }
 
-// ToolListController
+//	 ToolListController
 //	@Summary		工具列表
 //	@Description	获取工具
 //	@Tags			tool
@@ -19,12 +19,13 @@ type ToolController struct {
 //	@Failure		400	string		"参数错误！"
 //	@Failure		500	string		"服务器错误！"
 //	@Router			/tools [get]
+//	@Security		ApiKeyAuth
 func (T ToolController) ToolListController(c *gin.Context) {
 	toolList := model.QueryToolList()
 	HandleOk(c, utils.StatusOK, utils.StatusOK.String(), toolList)
 }
 
-// ToolAddController
+//	 ToolAddController
 //	@Summary		工具新增
 //	@Description	添加工具
 //	@Tags			tool
@@ -35,6 +36,7 @@ func (T ToolController) ToolListController(c *gin.Context) {
 //	@Failure		400		string		"参数错误！"
 //	@Failure		500		string		"服务器错误！"
 //	@Router			/tools [post]
+//	@Security		ApiKeyAuth
 func (T ToolController) ToolAddController(c *gin.Context) {
 	// 接受json格式数据，使用map
 	var tool model.Tool

@@ -1,4 +1,3 @@
-basePath: /api/v1
 definitions:
   model.Tool:
     description: Tool represents a tool entity
@@ -55,7 +54,6 @@ definitions:
     - StatusNotImplemented
     - StatusBadGateway
     - StatusServiceUnavailable
-host: https:promonkeyli.top:8080
 info:
   contact: {}
   description: 使用Golang编写的个人网站后台接口
@@ -112,6 +110,8 @@ paths:
           description: 服务器错误！
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
       summary: 用户注销
       tags:
       - user
@@ -135,6 +135,8 @@ paths:
           description: 服务器错误！
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
       summary: 工具列表
       tags:
       - tool
@@ -164,6 +166,8 @@ paths:
           description: 服务器错误！
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
       summary: 工具新增
       tags:
       - tool
@@ -187,6 +191,8 @@ paths:
           description: 服务器错误！
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
       summary: 用户列表
       tags:
       - user
@@ -216,9 +222,19 @@ paths:
           description: 服务器错误！
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
       summary: 新增用户
       tags:
       - user
-schemes:
-- https
+securityDefinitions:
+  ApiKeyAuth  API的认证方式:
+    in: header 发送认证的方式
+    name: Authorization  后端获取认证值得方式
+    type: apiKey
 swagger: "2.0"
+tags:
+- description: 用户相关的操作
+  name: user
+- description: 工具相关的操作
+  name: tool

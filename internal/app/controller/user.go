@@ -9,7 +9,7 @@ import (
 type UserController struct {
 }
 
-// UserListController
+//	 UserListController
 //	@Summary		用户列表
 //	@Description	获取所有用户
 //	@Tags			user
@@ -19,6 +19,7 @@ type UserController struct {
 //	@Failure		400	string		"参数错误！"
 //	@Failure		500	string		"服务器错误！"
 //	@Router			/users [get]
+//	@Security		ApiKeyAuth
 func (T UserController) UserListController(c *gin.Context) {
 	DB, userList := model.QueryAllUserList()
 	if DB.Error != nil {
@@ -28,7 +29,7 @@ func (T UserController) UserListController(c *gin.Context) {
 	}
 }
 
-// UserAddController
+//	 UserAddController
 //	@Summary		新增用户
 //	@Description	新增用户
 //	@Tags			user
@@ -39,6 +40,7 @@ func (T UserController) UserListController(c *gin.Context) {
 //	@Failure		400		string		"参数错误！"
 //	@Failure		500		string		"服务器错误！"
 //	@Router			/users [post]
+//	@Security		ApiKeyAuth
 func (T UserController) UserAddController(c *gin.Context) {
 	HandleOk(c, utils.StatusOK, utils.StatusOK.String(), nil)
 }
