@@ -20,7 +20,7 @@ type AuthController struct {
 //	@Accept			json
 //	@Produce		json
 //	@Param			user	body		model.User	true	"用户名密码登录"
-//	@Success		200		{object}	utils.Response
+//	@Success		200		{object}	tools.Response
 //	@Failure		400		{object}	string	"请求错误！"
 //	@Failure		500		string		"服务器错误！"
 //	@Router			/login [post]
@@ -60,7 +60,7 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 //	@Tags			user
 //	@Accept			json
 //	@Produce		json
-//	@Success		200	{object}	utils.Response
+//	@Success		200	{object}	tools.Response
 //	@Failure		400	string		"参数错误！"
 //	@Failure		500	string		"服务器错误！"
 //	@Router			/logout [post]

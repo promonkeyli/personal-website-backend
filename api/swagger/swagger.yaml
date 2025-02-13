@@ -17,11 +17,11 @@ definitions:
       username:
         type: string
     type: object
-  utils.Response:
+  tools.Response:
     properties:
       code:
         allOf:
-        - $ref: '#/definitions/utils.StatusCode'
+        - $ref: '#/definitions/tools.StatusCode'
         description: 响应码
       data:
         description: 响应数据(可以为空)
@@ -32,7 +32,7 @@ definitions:
         description: 响应时间戳
         type: integer
     type: object
-  utils.StatusCode:
+  tools.StatusCode:
     enum:
     - 200
     - 400
@@ -56,7 +56,7 @@ definitions:
     - StatusServiceUnavailable
 info:
   contact: {}
-  description: 使用Golang编写的个人网站后台接口
+  description: Go编写的个人网站后台接口
   title: 个人网站后台接口文档
   version: 0.0.1
 paths:
@@ -78,7 +78,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.Response'
+            $ref: '#/definitions/tools.Response'
         "400":
           description: 请求错误！
           schema:
@@ -101,7 +101,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.Response'
+            $ref: '#/definitions/tools.Response'
         "400":
           description: 参数错误！
           schema:
@@ -126,7 +126,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.Response'
+            $ref: '#/definitions/tools.Response'
         "400":
           description: 参数错误！
           schema:
@@ -157,7 +157,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.Response'
+            $ref: '#/definitions/tools.Response'
         "400":
           description: 参数错误！
           schema:
@@ -182,7 +182,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.Response'
+            $ref: '#/definitions/tools.Response'
         "400":
           description: 参数错误！
           schema:
@@ -213,7 +213,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.Response'
+            $ref: '#/definitions/tools.Response'
         "400":
           description: 参数错误！
           schema:
@@ -233,8 +233,3 @@ securityDefinitions:
     name: Authorization  后端获取认证值得方式
     type: apiKey
 swagger: "2.0"
-tags:
-- description: 用户相关的操作
-  name: user
-- description: 工具相关的操作
-  name: tool

@@ -43,7 +43,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/utils.Response"
+                            "$ref": "#/definitions/tools.Response"
                         }
                     },
                     "400": {
@@ -83,7 +83,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/utils.Response"
+                            "$ref": "#/definitions/tools.Response"
                         }
                     },
                     "400": {
@@ -123,7 +123,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/utils.Response"
+                            "$ref": "#/definitions/tools.Response"
                         }
                     },
                     "400": {
@@ -172,7 +172,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/utils.Response"
+                            "$ref": "#/definitions/tools.Response"
                         }
                     },
                     "400": {
@@ -212,7 +212,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/utils.Response"
+                            "$ref": "#/definitions/tools.Response"
                         }
                     },
                     "400": {
@@ -261,7 +261,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/utils.Response"
+                            "$ref": "#/definitions/tools.Response"
                         }
                     },
                     "400": {
@@ -308,14 +308,14 @@ const docTemplate = `{
                 }
             }
         },
-        "utils.Response": {
+        "tools.Response": {
             "type": "object",
             "properties": {
                 "code": {
                     "description": "响应码",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/utils.StatusCode"
+                            "$ref": "#/definitions/tools.StatusCode"
                         }
                     ]
                 },
@@ -332,7 +332,7 @@ const docTemplate = `{
                 }
             }
         },
-        "utils.StatusCode": {
+        "tools.StatusCode": {
             "type": "integer",
             "enum": [
                 200,
@@ -364,17 +364,7 @@ const docTemplate = `{
             "name": "Authorization  后端获取认证值得方式",
             "in": "header 发送认证的方式"
         }
-    },
-    "tags": [
-        {
-            "description": "用户相关的操作",
-            "name": "user"
-        },
-        {
-            "description": "工具相关的操作",
-            "name": "tool"
-        }
-    ]
+    }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
@@ -384,7 +374,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "个人网站后台接口文档",
-	Description:      "使用Golang编写的个人网站后台接口",
+	Description:      "Go编写的个人网站后台接口",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
