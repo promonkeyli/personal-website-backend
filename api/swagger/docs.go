@@ -358,21 +358,24 @@ const docTemplate = `{
             ]
         }
     },
-    "securityDefinitions": {
-        "ApiKeyAuth  API的认证方式": {
-            "type": "apiKey",
-            "name": "Authorization  后端获取认证值得方式",
-            "in": "header 发送认证的方式"
+    "tags": [
+        {
+            "description": "用户相关的操作",
+            "name": "user"
+        },
+        {
+            "description": "工具相关的操作",
+            "name": "tool"
         }
-    }
+    ]
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "0.0.1",
-	Host:             "",
-	BasePath:         "",
-	Schemes:          []string{},
+	Host:             "https://promonkeyli.top:8080",
+	BasePath:         "/api/v1",
+	Schemes:          []string{"https"},
 	Title:            "个人网站后台接口文档",
 	Description:      "Go编写的个人网站后台接口",
 	InfoInstanceName: "swagger",
