@@ -2,10 +2,11 @@ package repository
 
 import (
 	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"web_backend.com/m/v2/config"
+	"web_backend.com/m/v2/configs"
 )
 
 var (
@@ -16,9 +17,9 @@ var (
 func ConnectDB() {
 	var dsn string
 	if gin.Mode() == gin.DebugMode {
-		dsn = config.Local_Mysql
+		dsn = configs.Local_Mysql
 	} else {
-		dsn = config.Release_MySql
+		dsn = configs.Release_MySql
 	}
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {

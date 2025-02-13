@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"web_backend.com/m/v2/internal/app/middleware"
+	"web_backend.com/m/v2/internal/middleware"
 )
 
 func Router() *gin.Engine {

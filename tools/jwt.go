@@ -1,8 +1,9 @@
-package utils
+package tools
 
 import (
-	"github.com/golang-jwt/jwt/v5"
 	"time"
+
+	"github.com/golang-jwt/jwt/v5"
 )
 
 var jwtSecret = []byte("secret")

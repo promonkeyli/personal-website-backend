@@ -2,16 +2,18 @@ package controller
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/internal/app/model"
-	"web_backend.com/m/v2/utils"
+	"web_backend.com/m/v2/tools"
 )
 
 type AuthController struct {
 }
 
 // AuthLoginController
+//
 //	@Summary		用户登录
 //	@Description	使用用户名密码进行登录
 //	@Tags			user
@@ -31,20 +33,20 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 	DB, user := model.QuerySingleUser(bodyUser.UserName)
 	fmt.Println(bodyUser)
 	if DB.Error != nil {
-		HandleError(c, utils.StatusInternalServerError, "DB Error")
+		HandleError(c, tools.StatusInternalServerError, "DB Error")
 	} else {
 		p := bodyUser.Password
 		if p == user.Password {
 			// 签发token
-			token, e := utils.GenerateToken(p)
+			token, e := tools.GenerateToken(p)
 			if e != nil {
-				HandleError(c, utils.StatusInternalServerError, "Token Error")
+				HandleError(c, tools.StatusInternalServerError, "Token Error")
 			} else {
-				HandleOk(c, utils.StatusOK, utils.StatusOK.String(), token)
+				HandleOk(c, tools.StatusOK, tools.StatusOK.String(), token)
 			}
 
 		} else {
-			HandleError(c, utils.StatusBadRequest, "密码错误，请重新输入！")
+			HandleError(c, tools.StatusBadRequest, "密码错误，请重新输入！")
 		}
 
 	}
@@ -52,6 +54,7 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 }
 
 // AuthLogOutController
+//
 //	@Summary		用户注销
 //	@Description	用户注销，清除会话、注销令牌
 //	@Tags			user
@@ -64,5 +67,5 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 //	@Security		ApiKeyAuth
 func (T AuthController) AuthLogOutController(c *gin.Context) {
 	//todo 注销令牌，此处后续添加注销逻辑，JWT退出注销给你需要借助外力实现
-	HandleOk(c, utils.StatusOK, "注销成功！", nil)
+	HandleOk(c, tools.StatusOK, "注销成功！", nil)
 }

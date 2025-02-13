@@ -1,4 +1,4 @@
-package config
+package configs
 
 // 定义颜色转义码
 const (

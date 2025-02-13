@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
-	"web_backend.com/m/v2/utils"
+
+	"github.com/gin-gonic/gin"
+	"web_backend.com/m/v2/tools"
 )
 
 func JWT() gin.HandlerFunc {
@@ -22,7 +23,7 @@ func JWT() gin.HandlerFunc {
 		tokenString = tokenString[7:]
 
 		// Parse the token and get the claims
-		claims, err := utils.ParseToken(tokenString)
+		claims, err := tools.ParseToken(tokenString)
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid token"})
 			c.Abort()
