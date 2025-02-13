@@ -35,7 +35,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -164,7 +164,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Tool"
+                            "$ref": "#/definitions/models.Tool"
                         }
                     }
                 ],
@@ -253,7 +253,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -281,7 +281,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "model.Tool": {
+        "models.Tool": {
             "description": "Tool represents a tool entity",
             "type": "object",
             "properties": {
@@ -296,7 +296,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.User": {
+        "models.User": {
             "description": "User represents a user entity",
             "type": "object",
             "properties": {
@@ -358,6 +358,14 @@ const docTemplate = `{
             ]
         }
     },
+    "securityDefinitions": {
+        "": {
+            "description": "此API采用API Key进行认证",
+            "type": "apiKey",
+            "name": "ApiKeyAuth",
+            "in": "header"
+        }
+    },
     "tags": [
         {
             "description": "用户相关的操作",
@@ -373,8 +381,8 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "0.0.1",
-	Host:             "https://promonkeyli.top:8080",
-	BasePath:         "/api/v1",
+	Host:             "https://api.promonkeyli.top:8080",
+	BasePath:         "/v1",
 	Schemes:          []string{"https"},
 	Title:            "个人网站后台接口文档",
 	Description:      "Go编写的个人网站后台接口",

@@ -1,3 +1,4 @@
+// router/swagger.go: swagger文档相关路由
 package router
 
 import (

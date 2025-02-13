@@ -1,8 +1,9 @@
-package controller
+package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"time"
+
+	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/tools"
 )
 

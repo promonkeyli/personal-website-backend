@@ -1,11 +1,10 @@
-package controller
+package controllers
 
 import (
 	"fmt"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
-	"web_backend.com/m/v2/internal/app/model"
+	"net/http"
+	"web_backend.com/m/v2/internal/app/models"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -19,18 +18,18 @@ type AuthController struct {
 //	@Tags			user
 //	@Accept			json
 //	@Produce		json
-//	@Param			user	body		model.User	true	"用户名密码登录"
+//	@Param			user	body		models.User	true	"用户名密码登录"
 //	@Success		200		{object}	tools.Response
 //	@Failure		400		{object}	string	"请求错误！"
 //	@Failure		500		string		"服务器错误！"
 //	@Router			/login [post]
 func (T AuthController) AuthLoginController(c *gin.Context) {
-	var bodyUser model.User
+	var bodyUser models.User
 	if err := c.BindJSON(&bodyUser); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	DB, user := model.QuerySingleUser(bodyUser.UserName)
+	DB, user := models.QuerySingleUser(bodyUser.UserName)
 	fmt.Println(bodyUser)
 	if DB.Error != nil {
 		HandleError(c, tools.StatusInternalServerError, "DB Error")

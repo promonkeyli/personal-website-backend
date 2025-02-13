@@ -1,6 +1,6 @@
-basePath: /api/v1
+basePath: /v1
 definitions:
-  model.Tool:
+  models.Tool:
     description: Tool represents a tool entity
     properties:
       category:
@@ -10,7 +10,7 @@ definitions:
       url:
         type: string
     type: object
-  model.User:
+  models.User:
     description: User represents a user entity
     properties:
       password:
@@ -55,7 +55,7 @@ definitions:
     - StatusNotImplemented
     - StatusBadGateway
     - StatusServiceUnavailable
-host: https://promonkeyli.top:8080
+host: https://api.promonkeyli.top:8080
 info:
   contact: {}
   description: Go编写的个人网站后台接口
@@ -73,7 +73,7 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/model.User'
+          $ref: '#/definitions/models.User'
       produces:
       - application/json
       responses:
@@ -152,7 +152,7 @@ paths:
         name: tool
         required: true
         schema:
-          $ref: '#/definitions/model.Tool'
+          $ref: '#/definitions/models.Tool'
       produces:
       - application/json
       responses:
@@ -208,7 +208,7 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/model.User'
+          $ref: '#/definitions/models.User'
       produces:
       - application/json
       responses:
@@ -231,6 +231,12 @@ paths:
       - user
 schemes:
 - https
+securityDefinitions:
+  "":
+    description: 此API采用API Key进行认证
+    in: header
+    name: ApiKeyAuth
+    type: apiKey
 swagger: "2.0"
 tags:
 - description: 用户相关的操作

@@ -1,8 +1,8 @@
-package controller
+package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"web_backend.com/m/v2/internal/app/model"
+	"web_backend.com/m/v2/internal/app/models"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -22,7 +22,7 @@ type ToolController struct {
 // @Router			/tools [get]
 // @Security		ApiKeyAuth
 func (T ToolController) ToolListController(c *gin.Context) {
-	toolList := model.QueryToolList()
+	toolList := models.QueryToolList()
 	HandleOk(c, tools.StatusOK, tools.StatusOK.String(), toolList)
 }
 
@@ -33,7 +33,7 @@ func (T ToolController) ToolListController(c *gin.Context) {
 // @Tags			tool
 // @Accept			json
 // @Produce		json
-// @Param			tool	body		model.Tool	true	"工具新增"
+// @Param			tool	body		models.Tool	true	"工具新增"
 // @Success		200		{object}	tools.Response
 // @Failure		400		string		"参数错误！"
 // @Failure		500		string		"服务器错误！"
@@ -41,9 +41,9 @@ func (T ToolController) ToolListController(c *gin.Context) {
 // @Security		ApiKeyAuth
 func (T ToolController) ToolAddController(c *gin.Context) {
 	// 接受json格式数据，使用map
-	var tool model.Tool
+	var tool models.Tool
 	err := c.BindJSON(&tool)
-	model.CreateToolItem(tool)
+	models.CreateToolItem(tool)
 	if err == nil {
 		HandleOk(c, tools.StatusOK, tools.StatusOK.String(), tool)
 		return

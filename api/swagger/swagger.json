@@ -9,8 +9,8 @@
         "contact": {},
         "version": "0.0.1"
     },
-    "host": "https://promonkeyli.top:8080",
-    "basePath": "/api/v1",
+    "host": "https://api.promonkeyli.top:8080",
+    "basePath": "/v1",
     "paths": {
         "/login": {
             "post": {
@@ -32,7 +32,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -161,7 +161,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Tool"
+                            "$ref": "#/definitions/models.Tool"
                         }
                     }
                 ],
@@ -250,7 +250,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -278,7 +278,7 @@
         }
     },
     "definitions": {
-        "model.Tool": {
+        "models.Tool": {
             "description": "Tool represents a tool entity",
             "type": "object",
             "properties": {
@@ -293,7 +293,7 @@
                 }
             }
         },
-        "model.User": {
+        "models.User": {
             "description": "User represents a user entity",
             "type": "object",
             "properties": {
@@ -353,6 +353,14 @@
                 "StatusBadGateway",
                 "StatusServiceUnavailable"
             ]
+        }
+    },
+    "securityDefinitions": {
+        "": {
+            "description": "此API采用API Key进行认证",
+            "type": "apiKey",
+            "name": "ApiKeyAuth",
+            "in": "header"
         }
     },
     "tags": [

@@ -1,8 +1,8 @@
-package model
+package models
 
 import (
 	"gorm.io/gorm"
-	"web_backend.com/m/v2/internal/app/repository"
+	"web_backend.com/m/v2/internal/app/repositories"
 )
 
 // User represents a tool entity
@@ -21,11 +21,11 @@ func (User) TableName() string {
 // QuerySingleUser 单个用户查找
 func QuerySingleUser(username string) (*gorm.DB, User) {
 	var user User
-	return repository.DB.Where("username = ?", username).First(&user), user
+	return repositories.DB.Where("username = ?", username).First(&user), user
 }
 
 // QueryAllUser 查找所有用户
 func QueryAllUserList() (*gorm.DB, []User) {
 	var user []User
-	return repository.DB.Find(&user), user
+	return repositories.DB.Find(&user), user
 }

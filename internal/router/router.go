@@ -1,32 +1,15 @@
+// router/router.go: 路由入口
 package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"web_backend.com/m/v2/internal/middleware"
+	"web_backend.com/m/v2/internal/pkg/middleware"
 )
 
-func Router() *gin.Engine {
-	// gin.default 默认包含了日志记录功能
-	r := gin.Default()
-	// 设置信任的端口
-	r.ForwardedByClientIP = true
-	err := r.SetTrustedProxies([]string{"127.0.0.1"})
-	if err != nil {
-		return nil
-	}
-	// 启用允许跨域中间件
-	r.Use(middleware.CorsMiddleware())
-	// 路由生成
-	generateAllRouter(r)
-	return r
-}
-
-func generateAllRouter(r *gin.Engine) {
-	api := r.Group("/api")
-
+func Router(r *gin.Engine) {
 	// v1 版本
+	v1 := r.Group("/v1")
 	{
-		v1 := api.Group("/v1")
 		// 不需要授权
 		GenSwaggerRouter(r)
 		GenLoginRouter(v1)
@@ -36,5 +19,4 @@ func generateAllRouter(r *gin.Engine) {
 		GenUserRouter(v1)
 		GenToolRouter(v1)
 	}
-
 }

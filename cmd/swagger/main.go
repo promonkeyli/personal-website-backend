@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	"web_backend.com/m/v2/configs"
+	configs "web_backend.com/m/v2/configs/command"
 )
 
 func main() {
@@ -15,12 +15,11 @@ func main() {
 	}
 
 	// 执行 swag init 命令
-	dir := "./cmd/server,./cmd/server,./internal/app/controller,./internal/app/model,./tools" // 需要注释转换swagger的文件
+	dir := "./cmd/server,./cmd/server,./internal/app/controllers,./internal/app/models,./tools" // 需要注释转换swagger的文件
 	if err := runCommand("swag", "init", "--dir", dir, "-o", "./api/swagger"); err != nil {
 		fmt.Printf(configs.CommandRed+"Error running swag init: %v\n", err)
 		return
 	}
-
 	fmt.Println(configs.CommandGreen + "swagger文档生成成功！")
 }
 func runCommand(name string, args ...string) error {

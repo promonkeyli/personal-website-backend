@@ -1,8 +1,8 @@
-package controller
+package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"web_backend.com/m/v2/internal/app/model"
+	"web_backend.com/m/v2/internal/app/models"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -22,7 +22,7 @@ type UserController struct {
 // @Router			/users [get]
 // @Security		ApiKeyAuth
 func (T UserController) UserListController(c *gin.Context) {
-	DB, userList := model.QueryAllUserList()
+	DB, userList := models.QueryAllUserList()
 	if DB.Error != nil {
 		HandleError(c, tools.StatusInternalServerError, DB.Error.Error())
 	} else {
@@ -37,7 +37,7 @@ func (T UserController) UserListController(c *gin.Context) {
 // @Tags			user
 // @Accept			json
 // @Produce		json
-// @Param			user	body		model.User	true	"用户新增"
+// @Param			user	body		models.User	true	"用户新增"
 // @Success		200		{object}	tools.Response
 // @Failure		400		string		"参数错误！"
 // @Failure		500		string		"服务器错误！"

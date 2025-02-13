@@ -1,7 +1,7 @@
-package model
+package models
 
 import (
-	"web_backend.com/m/v2/internal/app/repository"
+	"web_backend.com/m/v2/internal/app/repositories"
 )
 
 // Tool represents a tool entity
@@ -20,10 +20,10 @@ func (Tool) TableName() string {
 
 func QueryToolList() []Tool {
 	var tool []Tool
-	repository.DB.Find(&tool)
+	repositories.DB.Find(&tool)
 	return tool
 }
 
 func CreateToolItem(tool Tool) {
-	repository.DB.Create(&tool)
+	repositories.DB.Create(&tool)
 }

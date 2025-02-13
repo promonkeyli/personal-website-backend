@@ -1,4 +1,4 @@
-package repository
+package repositories
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"web_backend.com/m/v2/configs"
+	configs "web_backend.com/m/v2/configs/database"
 )
 
 var (
