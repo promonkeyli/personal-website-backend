@@ -1,10 +1,5 @@
 package models
 
-import (
-	"gorm.io/gorm"
-	"web_backend.com/m/v2/internal/app/repositories"
-)
-
 // User represents a tool entity
 // @Description User represents a user entity
 type User struct {
@@ -16,16 +11,4 @@ type User struct {
 // TableName 自定义表名
 func (User) TableName() string {
 	return "user"
-}
-
-// QuerySingleUser 单个用户查找
-func QuerySingleUser(username string) (*gorm.DB, User) {
-	var user User
-	return repositories.DB.Where("username = ?", username).First(&user), user
-}
-
-// QueryAllUser 查找所有用户
-func QueryAllUserList() (*gorm.DB, []User) {
-	var user []User
-	return repositories.DB.Find(&user), user
 }

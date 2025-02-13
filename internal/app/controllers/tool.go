@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/internal/app/models"
+	"web_backend.com/m/v2/internal/app/repositories"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -22,7 +23,7 @@ type ToolController struct {
 // @Router			/tools [get]
 // @Security		ApiKeyAuth
 func (T ToolController) ToolListController(c *gin.Context) {
-	toolList := models.QueryToolList()
+	toolList := repositories.QueryToolList()
 	HandleOk(c, tools.StatusOK, tools.StatusOK.String(), toolList)
 }
 
@@ -43,7 +44,7 @@ func (T ToolController) ToolAddController(c *gin.Context) {
 	// 接受json格式数据，使用map
 	var tool models.Tool
 	err := c.BindJSON(&tool)
-	models.CreateToolItem(tool)
+	repositories.CreateToolItem(tool)
 	if err == nil {
 		HandleOk(c, tools.StatusOK, tools.StatusOK.String(), tool)
 		return

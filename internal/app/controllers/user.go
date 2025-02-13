@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"web_backend.com/m/v2/internal/app/models"
+	"web_backend.com/m/v2/internal/app/repositories"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -22,7 +22,7 @@ type UserController struct {
 // @Router			/users [get]
 // @Security		ApiKeyAuth
 func (T UserController) UserListController(c *gin.Context) {
-	DB, userList := models.QueryAllUserList()
+	DB, userList := repositories.QueryAllUserList()
 	if DB.Error != nil {
 		HandleError(c, tools.StatusInternalServerError, DB.Error.Error())
 	} else {

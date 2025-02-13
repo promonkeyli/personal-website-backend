@@ -381,9 +381,9 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "0.0.1",
-	Host:             "https://api.promonkeyli.top:8080",
-	BasePath:         "/v1",
-	Schemes:          []string{"https"},
+	Host:             "",
+	BasePath:         "",
+	Schemes:          []string{},
 	Title:            "个人网站后台接口文档",
 	Description:      "Go编写的个人网站后台接口",
 	InfoInstanceName: "swagger",

@@ -1,7 +1,4 @@
 {
-    "schemes": [
-        "https"
-    ],
     "swagger": "2.0",
     "info": {
         "description": "Go编写的个人网站后台接口",
@@ -9,8 +6,6 @@
         "contact": {},
         "version": "0.0.1"
     },
-    "host": "https://api.promonkeyli.top:8080",
-    "basePath": "/v1",
     "paths": {
         "/login": {
             "post": {

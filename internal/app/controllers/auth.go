@@ -2,9 +2,11 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/internal/app/models"
+	"web_backend.com/m/v2/internal/app/repositories"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -29,7 +31,7 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	DB, user := models.QuerySingleUser(bodyUser.UserName)
+	DB, user := repositories.QuerySingleUser(bodyUser.UserName)
 	fmt.Println(bodyUser)
 	if DB.Error != nil {
 		HandleError(c, tools.StatusInternalServerError, "DB Error")

@@ -28,10 +28,6 @@ func init() {
 //	@description	此API采用API Key进行认证
 //	@keyName		Authorization
 
-//	@host		https://api.promonkeyli.top:8080
-//	@BasePath	/v1
-//	@schemes	https
-
 //	@tag.name			user
 //	@tag.description	用户相关的操作
 

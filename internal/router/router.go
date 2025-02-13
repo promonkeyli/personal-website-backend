@@ -10,8 +10,8 @@ func Router(r *gin.Engine) {
 	// v1 版本
 	v1 := r.Group("/v1")
 	{
-		// 不需要授权
-		GenSwaggerRouter(r)
+		// 不需要授权: swagger文档和login不需要jwt权限校验
+		GenSwaggerRouter(v1)
 		GenLoginRouter(v1)
 		// 需要授权，使用自定义JWT中间件
 		v1.Use(middleware.JWT())

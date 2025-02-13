@@ -1,9 +1,5 @@
 package models
 
-import (
-	"web_backend.com/m/v2/internal/app/repositories"
-)
-
 // Tool represents a tool entity
 // @Description Tool represents a tool entity
 type Tool struct {
@@ -18,12 +14,4 @@ func (Tool) TableName() string {
 	return "tool"
 }
 
-func QueryToolList() []Tool {
-	var tool []Tool
-	repositories.DB.Find(&tool)
-	return tool
-}
 
-func CreateToolItem(tool Tool) {
-	repositories.DB.Create(&tool)
-}
