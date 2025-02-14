@@ -17,6 +17,11 @@ const docTemplate = `{
     "paths": {
         "/login": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "description": "使用用户名密码进行登录",
                 "consumes": [
                     "application/json"
@@ -25,7 +30,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "user"
+                    "auth"
                 ],
                 "summary": "用户登录",
                 "parameters": [
@@ -45,18 +50,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/network.Response"
                         }
-                    },
-                    "400": {
-                        "description": "请求错误！",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "服务器错误！",
-                        "schema": {
-                            "type": "string"
-                        }
                     }
                 }
             }
@@ -65,7 +58,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
+                        "BearerAuth": []
                     }
                 ],
                 "description": "用户注销，清除会话、注销令牌",
@@ -76,7 +69,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "user"
+                    "auth"
                 ],
                 "summary": "用户注销",
                 "responses": {
@@ -84,18 +77,6 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/network.Response"
-                        }
-                    },
-                    "400": {
-                        "description": "参数错误！",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "服务器错误！",
-                        "schema": {
-                            "type": "string"
                         }
                     }
                 }
@@ -359,20 +340,24 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
-        "": {
-            "description": "此API采用API Key进行认证",
+        "BearerAuth": {
+            "description": "JWT认证，格式: Bearer \u003ctoken\u003e",
             "type": "apiKey",
-            "name": "ApiKeyAuth",
+            "name": "Authorization",
             "in": "header"
         }
     },
     "tags": [
         {
-            "description": "用户相关的操作",
+            "description": "权限模块",
+            "name": "auth"
+        },
+        {
+            "description": "用户模块",
             "name": "user"
         },
         {
-            "description": "工具相关的操作",
+            "description": "工具模块",
             "name": "tool"
         }
     ]

@@ -22,17 +22,19 @@ func init() {
 //	@version		0.0.1
 //	@description	Go编写的个人网站后台接口
 
-//	@securityDefinitions.apikey
-//	@name			ApiKeyAuth
-//	@in				header
-//	@description	此API采用API Key进行认证
-//	@keyName		Authorization
+//	@securityDefinitions.apikey	BearerAuth
+//	@in							header
+//	@name						Authorization
+//	@description				JWT认证，格式: Bearer <token>
+
+//	@tag.name			auth
+//	@tag.description	权限模块
 
 //	@tag.name			user
-//	@tag.description	用户相关的操作
+//	@tag.description	用户模块
 
 // @tag.name			tool
-// @tag.description	工具相关的操作
+// @tag.description	工具模块
 func main() {
 	r := gin.Default()
 	r.Use(middleware.CorsMiddleware())

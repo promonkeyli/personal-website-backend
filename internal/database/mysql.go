@@ -2,11 +2,10 @@
 package database
 
 import (
-	"fmt"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"web_backend.com/m/v2/internal/config"
+	"web_backend.com/m/v2/tools"
 )
 
 var (
@@ -18,9 +17,10 @@ func Init() {
 	dsn := config.GetDSN()
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		fmt.Println("数据库连接失败", err)
+		tools.LogError("数据库连接失败%s", err)
 		return
 	}
+	tools.LogInfo("数据库连接成功")
 }
 
 // 通过函数安全访问数据库实例
