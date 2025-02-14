@@ -1,13 +1,16 @@
 package repositories
 
-import "web_backend.com/m/v2/internal/app/models"
+import (
+	"web_backend.com/m/v2/internal/app/models"
+	"web_backend.com/m/v2/internal/database"
+)
 
 func QueryToolList() []models.Tool {
 	var tool []models.Tool
-	DB.Find(&tool)
+	database.GetDB().Find(&tool)
 	return tool
 }
 
 func CreateToolItem(tool models.Tool) {
-	DB.Create(&tool)
+	database.GetDB().Create(&tool)
 }
