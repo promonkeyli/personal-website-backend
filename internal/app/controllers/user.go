@@ -22,9 +22,9 @@ type UserController struct {
 // @Router			/users [get]
 // @Security		ApiKeyAuth
 func (T UserController) UserListController(c *gin.Context) {
-	DB, userList := repositories.QueryAllUserList()
-	if DB.Error != nil {
-		HandleError(c, tools.StatusInternalServerError, DB.Error.Error())
+	userList, err := repositories.QueryAllUserList()
+	if err != nil {
+		HandleError(c, tools.StatusInternalServerError, err.Error())
 	} else {
 		HandleOk(c, tools.StatusOK, tools.StatusOK.String(), userList)
 	}

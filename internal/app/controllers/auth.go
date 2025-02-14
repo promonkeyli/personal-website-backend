@@ -31,9 +31,9 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	DB, user := repositories.QuerySingleUser(bodyUser.UserName)
+	user, err := repositories.QuerySingleUser(bodyUser.UserName)
 	fmt.Println(bodyUser)
-	if DB.Error != nil {
+	if err != nil {
 		HandleError(c, tools.StatusInternalServerError, "DB Error")
 	} else {
 		p := bodyUser.Password

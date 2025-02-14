@@ -23,7 +23,11 @@ type ToolController struct {
 // @Router			/tools [get]
 // @Security		ApiKeyAuth
 func (T ToolController) ToolListController(c *gin.Context) {
-	toolList := repositories.QueryToolList()
+	toolList, err := repositories.QueryToolList()
+	if err != nil {
+		HandleError(c, tools.StatusInternalServerError, err.Error())
+		return
+	}
 	HandleOk(c, tools.StatusOK, tools.StatusOK.String(), toolList)
 }
 
