@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/internal/app/models"
 	"web_backend.com/m/v2/internal/app/repositories"
-	"web_backend.com/m/v2/tools"
+	"web_backend.com/m/v2/internal/pkg/network"
 )
 
 type ToolController struct {
@@ -17,7 +17,7 @@ type ToolController struct {
 // @Tags			tool
 // @Accept			json
 // @Produce		json
-// @Success		200	{object}	tools.Response
+// @Success		200	{object}	network.Response
 // @Failure		400	string		"参数错误！"
 // @Failure		500	string		"服务器错误！"
 // @Router			/tools [get]
@@ -25,10 +25,10 @@ type ToolController struct {
 func (T ToolController) ToolListController(c *gin.Context) {
 	toolList, err := repositories.QueryToolList()
 	if err != nil {
-		HandleError(c, tools.StatusInternalServerError, err.Error())
+		network.HandleError(c, network.StatusInternalServerError, err.Error())
 		return
 	}
-	HandleOk(c, tools.StatusOK, tools.StatusOK.String(), toolList)
+	network.HandleOk(c, network.StatusOK, network.StatusOK.String(), toolList)
 }
 
 //	ToolAddController
@@ -39,7 +39,7 @@ func (T ToolController) ToolListController(c *gin.Context) {
 // @Accept			json
 // @Produce		json
 // @Param			tool	body		models.Tool	true	"工具新增"
-// @Success		200		{object}	tools.Response
+// @Success		200		{object}	network.Response
 // @Failure		400		string		"参数错误！"
 // @Failure		500		string		"服务器错误！"
 // @Router			/tools [post]
@@ -50,8 +50,8 @@ func (T ToolController) ToolAddController(c *gin.Context) {
 	err := c.BindJSON(&tool)
 	repositories.CreateToolItem(tool)
 	if err == nil {
-		HandleOk(c, tools.StatusOK, tools.StatusOK.String(), tool)
+		network.HandleOk(c, network.StatusOK, network.StatusOK.String(), tool)
 		return
 	}
-	HandleError(c, tools.StatusInternalServerError, err.Error())
+	network.HandleError(c, network.StatusInternalServerError, err.Error())
 }

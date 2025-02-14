@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/internal/app/models"
 	"web_backend.com/m/v2/internal/app/repositories"
+	"web_backend.com/m/v2/internal/pkg/network"
 	"web_backend.com/m/v2/tools"
 )
 
@@ -21,7 +22,7 @@ type AuthController struct {
 //	@Accept			json
 //	@Produce		json
 //	@Param			user	body		models.User	true	"用户名密码登录"
-//	@Success		200		{object}	tools.Response
+//	@Success		200		{object}	network.Response
 //	@Failure		400		{object}	string	"请求错误！"
 //	@Failure		500		string		"服务器错误！"
 //	@Router			/login [post]
@@ -34,20 +35,20 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 	user, err := repositories.QuerySingleUser(bodyUser.UserName)
 	fmt.Println(bodyUser)
 	if err != nil {
-		HandleError(c, tools.StatusInternalServerError, "DB Error")
+		network.HandleError(c, network.StatusInternalServerError, "DB Error")
 	} else {
 		p := bodyUser.Password
 		if p == user.Password {
 			// 签发token
 			token, e := tools.GenerateToken(p)
 			if e != nil {
-				HandleError(c, tools.StatusInternalServerError, "Token Error")
+				network.HandleError(c, network.StatusInternalServerError, "Token Error")
 			} else {
-				HandleOk(c, tools.StatusOK, tools.StatusOK.String(), token)
+				network.HandleOk(c, network.StatusOK, network.StatusOK.String(), token)
 			}
 
 		} else {
-			HandleError(c, tools.StatusBadRequest, "密码错误，请重新输入！")
+			network.HandleError(c, network.StatusBadRequest, "密码错误，请重新输入！")
 		}
 
 	}
@@ -61,12 +62,12 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 //	@Tags			user
 //	@Accept			json
 //	@Produce		json
-//	@Success		200	{object}	tools.Response
+//	@Success		200	{object}	network.Response
 //	@Failure		400	string		"参数错误！"
 //	@Failure		500	string		"服务器错误！"
 //	@Router			/logout [post]
 //	@Security		ApiKeyAuth
 func (T AuthController) AuthLogOutController(c *gin.Context) {
 	//todo 注销令牌，此处后续添加注销逻辑，JWT退出注销给你需要借助外力实现
-	HandleOk(c, tools.StatusOK, "注销成功！", nil)
+	network.HandleOk(c, network.StatusOK, "注销成功！", nil)
 }

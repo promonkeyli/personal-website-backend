@@ -17,11 +17,11 @@ definitions:
       username:
         type: string
     type: object
-  tools.Response:
+  network.Response:
     properties:
       code:
         allOf:
-        - $ref: '#/definitions/tools.StatusCode'
+        - $ref: '#/definitions/network.StatusCode'
         description: 响应码
       data:
         description: 响应数据(可以为空)
@@ -32,7 +32,7 @@ definitions:
         description: 响应时间戳
         type: integer
     type: object
-  tools.StatusCode:
+  network.StatusCode:
     enum:
     - 200
     - 400
@@ -78,7 +78,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tools.Response'
+            $ref: '#/definitions/network.Response'
         "400":
           description: 请求错误！
           schema:
@@ -101,7 +101,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tools.Response'
+            $ref: '#/definitions/network.Response'
         "400":
           description: 参数错误！
           schema:
@@ -126,7 +126,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tools.Response'
+            $ref: '#/definitions/network.Response'
         "400":
           description: 参数错误！
           schema:
@@ -157,7 +157,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tools.Response'
+            $ref: '#/definitions/network.Response'
         "400":
           description: 参数错误！
           schema:
@@ -182,7 +182,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tools.Response'
+            $ref: '#/definitions/network.Response'
         "400":
           description: 参数错误！
           schema:
@@ -213,7 +213,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tools.Response'
+            $ref: '#/definitions/network.Response'
         "400":
           description: 参数错误！
           schema:

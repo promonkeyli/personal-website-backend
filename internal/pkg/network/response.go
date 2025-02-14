@@ -1,4 +1,4 @@
-package tools
+package network
 
 // Response 常规响应实体封装
 // swagger:model Response

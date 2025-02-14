@@ -43,7 +43,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tools.Response"
+                            "$ref": "#/definitions/network.Response"
                         }
                     },
                     "400": {
@@ -83,7 +83,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tools.Response"
+                            "$ref": "#/definitions/network.Response"
                         }
                     },
                     "400": {
@@ -123,7 +123,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tools.Response"
+                            "$ref": "#/definitions/network.Response"
                         }
                     },
                     "400": {
@@ -172,7 +172,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tools.Response"
+                            "$ref": "#/definitions/network.Response"
                         }
                     },
                     "400": {
@@ -212,7 +212,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tools.Response"
+                            "$ref": "#/definitions/network.Response"
                         }
                     },
                     "400": {
@@ -261,7 +261,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tools.Response"
+                            "$ref": "#/definitions/network.Response"
                         }
                     },
                     "400": {
@@ -308,14 +308,14 @@ const docTemplate = `{
                 }
             }
         },
-        "tools.Response": {
+        "network.Response": {
             "type": "object",
             "properties": {
                 "code": {
                     "description": "响应码",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/tools.StatusCode"
+                            "$ref": "#/definitions/network.StatusCode"
                         }
                     ]
                 },
@@ -332,7 +332,7 @@ const docTemplate = `{
                 }
             }
         },
-        "tools.StatusCode": {
+        "network.StatusCode": {
             "type": "integer",
             "enum": [
                 200,
