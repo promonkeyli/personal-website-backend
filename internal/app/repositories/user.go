@@ -6,9 +6,9 @@ import (
 )
 
 // QuerySingleUser 单个用户查找
-func QuerySingleUser(username string) (models.User, error) {
+func QuerySingleUser(userName string) (models.User, error) {
 	var user models.User
-	db := database.GetDB().Where("username = ?", username).First(&user)
+	db := database.GetDB().Where("userName = ?", userName).First(&user)
 	if db.Error != nil {
 		return models.User{}, db.Error
 	}

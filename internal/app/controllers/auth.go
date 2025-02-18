@@ -1,11 +1,9 @@
 package controllers
 
 import (
-	"fmt"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"web_backend.com/m/v2/internal/app/models"
+	"web_backend.com/m/v2/internal/app/services"
 	"web_backend.com/m/v2/internal/pkg/network"
 	"web_backend.com/m/v2/tools"
 )
@@ -27,31 +25,10 @@ func (T AuthController) AuthLoginController(c *gin.Context) {
 	var bodyUser models.User
 	tools.LogInfo("AuthLoginController called")
 	if err := c.BindJSON(&bodyUser); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		network.HandleError(c, network.StatusBadRequest, err.Error())
 		return
 	}
-	fmt.Println(bodyUser)
-	// user, err := repositories.QuerySingleUser(bodyUser.UserName)
-	// fmt.Println(bodyUser)
-	// if err != nil {
-	// 	network.HandleError(c, network.StatusInternalServerError, "DB Error")
-	// } else {
-	// 	p := bodyUser.Password
-	// 	if p == user.Password {
-	// 		// 签发token
-	// 		token, e := tools.GenerateToken(p)
-	// 		if e != nil {
-	// 			network.HandleError(c, network.StatusInternalServerError, "Token Error")
-	// 		} else {
-	// 			network.HandleOk(c, network.StatusOK, network.StatusOK.String(), token)
-	// 		}
-
-	// 	} else {
-	// 		network.HandleError(c, network.StatusBadRequest, "密码错误，请重新输入！")
-	// 	}
-
-	// }
-
+	services.LoginService(c, bodyUser)
 }
 
 // @Summary		用户注销

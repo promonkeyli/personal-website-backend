@@ -3,7 +3,7 @@ package models
 // User represents a tool entity
 // @Description User represents a user entity
 type User struct {
-	UserName string `json:"username" gorm:"column:username"`
+	UserName string `json:"userName" gorm:"column:userName"`
 	Password string `json:"password" gorm:"column:password"`
 }
 
