@@ -24,7 +24,7 @@ jobs:
         with:
           context: . # Dockerfile 所在的上下文路径, context在根目录
           push: true
-          tags: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_REPOSITORY }}:latest
+          tags: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_IMAGE }}:latest
 
       - name: SCP Docker-Compose
         uses: appleboy/scp-action@v0.1.7
@@ -39,7 +39,7 @@ jobs:
       - name: SSH Run Docker-Compose
         uses: appleboy/ssh-action@v1.0.3
         env:
-          IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_REPOSITORY }}:latest
+          IMAGE: ${{ secrets.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/${{ secrets.ACR_IMAGE }}:latest
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}

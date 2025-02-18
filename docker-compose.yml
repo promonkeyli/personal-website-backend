@@ -1,6 +1,6 @@
 services:
   app:
-    image: registry.cn-hangzhou.aliyuncs.com/promonkeyli/website-go:latest
+    image: registry.cn-chengdu.aliyuncs.com/promonkeyli/website-go:latest
     container_name: website-app
     ports:
       - "8081:8081"

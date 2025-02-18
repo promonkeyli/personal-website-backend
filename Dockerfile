@@ -9,7 +9,7 @@ FROM alpine:latest
 WORKDIR /root/
 COPY --from=build /app/main .
 ENV GIN_MODE=release \
-    DB_HOST=10.0.16.5 \
+    DB_HOST=139.155.143.190 \
     DB_PORT=3306 \
     DB_USER=root \
     DB_PASSWORD=ly15984093508 \
