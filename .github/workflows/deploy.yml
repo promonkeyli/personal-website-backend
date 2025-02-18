@@ -48,7 +48,7 @@ jobs:
           envs: IMAGE
           script: |
             cd /data/go
-            docker-compose down
+            docker compose down
             docker rmi $IMAGE
-            docker-compose pull app
-            docker-compose up -d
+            docker compose pull app
+            docker compose up -d
