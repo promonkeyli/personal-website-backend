@@ -4,8 +4,6 @@ services:
     container_name: website-go
     ports:
       - "8081:8081"
-    networks:
-      - website
   nginx:
     image: nginx:latest
     container_name: website-nginx
@@ -16,7 +14,5 @@ services:
       - /data/nginx-certs:/etc/nginx/certs
     depends_on:
       - app
-    networks:
-      - website
 volumes:
   mysql-data:
