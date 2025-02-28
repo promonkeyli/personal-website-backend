@@ -14,4 +14,5 @@ ENV GIN_MODE=release \
     DB_USER=root \
     DB_PASSWORD=ly15984093508 \
     DB_NAME=website
+EXPOSE 8081 
 CMD ["./main"]
