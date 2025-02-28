@@ -2,8 +2,6 @@ services:
   app:
     image: registry.cn-chengdu.aliyuncs.com/promonkeyli/website-go:latest
     container_name: website-go
-    ports:
-      - "8081:8081"
     networks:
       - website
   nginx:
